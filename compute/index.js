@@ -5,12 +5,21 @@ export function compute(input) {
     [7, "Qix"],
   ];
 
-  const output = TOKENS.reduce((acc, [divisor, word]) => {
+  const prefix = TOKENS.reduce((acc, [divisor, word]) => {
     if (input % divisor === 0) {
       acc = `${acc}${word}`;
     }
     return acc;
   }, "");
 
-  return output || input.toString();
+  let suffix = input
+    .toString()
+    .split("")
+    .map((char) => {
+      const token = TOKENS.find(([divisor]) => divisor.toString() === char);
+      return token ? token[1] : "";
+    })
+    .join("");
+
+  return `${prefix}${suffix}` || input.toString();
 }
