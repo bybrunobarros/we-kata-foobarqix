@@ -18,7 +18,7 @@ macro.title = (providedTitle, input, expected) =>
   { input: 7, expected: "QixQix" },
   { input: 8, expected: "8" },
   { input: 9, expected: "Foo" },
-  { input: 10, expected: "Bar" },
+  { input: 10, expected: "Bar*" },
   { input: 13, expected: "Foo" },
   { input: 15, expected: "FooBarBar" },
   { input: 21, expected: "FooQix" },
