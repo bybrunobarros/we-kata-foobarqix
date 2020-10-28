@@ -1,8 +1,8 @@
-## Statement
+## Statement [![Build Status](https://travis-ci.com/bybrunobarros/we-kata-foobarqix.svg?branch=main)](https://travis-ci.com/bybrunobarros/we-kata-foobarqix)
 
 ### FooBarQix
 
-You should implement a function String compute(String) which implements the following rules.
+You should implement a function String index(String) which implements the following rules.
 #### Step 1
 ##### Rules
 - If the number is divisible by 3, write “Foo” instead of the number
