@@ -5,11 +5,6 @@ export function compute(input) {
     [5, "Bar"],
     [7, "Qix"],
   ];
-  const words = [...TOKENS]
-    .splice(1)
-    .map(([, word]) => word)
-    .join("|");
-  const wordsRegExp = new RegExp(words, "g");
 
   const prefix = TOKENS.reduce((acc, [divisor, word]) => {
     if (input % divisor === 0) {
@@ -26,6 +21,12 @@ export function compute(input) {
       return token ? token[1] : char;
     })
     .join("");
+
+  const words = [...TOKENS]
+    .splice(1)
+    .map(([, word]) => word)
+    .join("|");
+  const wordsRegExp = new RegExp(words, "g");
 
   if (prefix || wordsRegExp.test(suffix)) {
     suffix = suffix.replace(/\d/g, "");
