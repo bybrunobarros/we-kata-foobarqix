@@ -26,4 +26,7 @@ macro.title = (providedTitle, input, expected) =>
   { input: 51, expected: "FooBar" },
   { input: 53, expected: "BarFoo" },
   { input: 101, expected: "1*1" },
+  { input: 105, expected: "FooBarQix*Bar" },
+  { input: 303, expected: "FooFoo*Foo" },
+  { input: 10101, expected: "FooQix**" },
 ].forEach(({ input, expected }) => test(macro, input, expected));
