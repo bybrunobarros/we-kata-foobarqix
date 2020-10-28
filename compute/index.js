@@ -2,6 +2,7 @@ export function compute(input) {
   const TOKENS = [
     [3, "Foo"],
     [5, "Bar"],
+    [7, "Qix"],
   ];
 
   const output = TOKENS.reduce((acc, [divisor, word]) => {
