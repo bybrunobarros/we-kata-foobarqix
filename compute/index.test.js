@@ -1,15 +1,15 @@
 import test from "ava";
 import { compute } from "./index.js";
 
-test(`should return "1" when input is 1`, (t) => {
-  const computed = compute(1);
-  t.is(computed, "1");
-});
-test(`should return "Foo" when input is 6`, (t) => {
-  const computed = compute(6);
-  t.is(computed, "Foo");
-});
-test(`should return "Bar" when input is 10`, (t) => {
-  const computed = compute(10);
-  t.is(computed, "Bar");
-});
+function macro(t, input, expected) {
+  const computed = compute(input);
+  t.is(computed, expected);
+}
+macro.title = (providedTitle, input, expected) =>
+  `should return "${expected}" when input is ${input}`;
+
+[
+  { input: 1, expected: "1" },
+  { input: 6, expected: "Foo" },
+  { input: 10, expected: "Bar" },
+].forEach(({ input, expected }) => test(macro, input, expected));
