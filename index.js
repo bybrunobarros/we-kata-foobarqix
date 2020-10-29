@@ -1,3 +1,5 @@
 import { compute } from "./compute/index.js";
 
-console.log(compute(process.argv.slice(2)));
+let input = process.argv.slice(2);
+input = input.length > 0 ? input[0] : 0;
+console.log(compute(input));
