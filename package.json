@@ -9,6 +9,7 @@
     "lint": "eslint ./**/*.js",
     "lint:fix": "eslint --cache --fix",
     "test": "ava",
+    "test:coverage": "c8 --reporter=lcovonly ava",
     "test:watch": "ava --watch"
   },
   "repository": {
@@ -23,6 +24,7 @@
   "homepage": "https://github.com/bybrunobarros/kata#readme",
   "devDependencies": {
     "ava": "^3.12.1",
+    "c8": "^7.3.5",
     "eslint": "^7.8.1",
     "eslint-config-prettier": "^6.11.0",
     "husky": "^4.3.0",
