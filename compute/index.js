@@ -1,26 +1,30 @@
-export function compute(input) {
-  const TOKENS = [
-    [0, "*"],
-    [3, "Foo"],
-    [5, "Bar"],
-    [7, "Qix"],
-  ];
+const TOKENS = [
+  [0, "*"],
+  [3, "Foo"],
+  [5, "Bar"],
+  [7, "Qix"],
+];
 
-  const prefix = TOKENS.reduce((acc, [divisor, word]) => {
+const writeWordWhenDivisibleByNumber = (input) =>
+  TOKENS.reduce((acc, [divisor, word]) => {
     if (input % divisor === 0) {
       acc = `${acc}${word}`;
     }
     return acc;
   }, "");
 
-  let suffix = input
+const replaceDigitsByWords = (input) =>
+  input
     .toString()
     .split("")
-    .map((char) => {
-      const token = TOKENS.find(([divisor]) => divisor.toString() === char);
-      return token ? token[1] : char;
+    .map((digit) => {
+      const token = TOKENS.find(([divisor]) => divisor.toString() === digit);
+      return token ? token[1] : digit;
     })
     .join("");
+
+const removeDigits = (prefix, suffix) => {
+  let result = suffix;
 
   const words = [...TOKENS]
     .splice(1)
@@ -29,8 +33,16 @@ export function compute(input) {
   const wordsRegExp = new RegExp(words, "g");
 
   if (prefix || wordsRegExp.test(suffix)) {
-    suffix = suffix.replace(/\d/g, "");
+    result = suffix.replace(/\d/g, "");
   }
+
+  return result;
+};
+
+export function compute(input) {
+  const prefix = writeWordWhenDivisibleByNumber(input);
+
+  let suffix = removeDigits(prefix, replaceDigitsByWords(input));
 
   return `${prefix}${suffix}` || input.toString();
 }
