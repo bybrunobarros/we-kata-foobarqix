@@ -44,5 +44,6 @@ export function compute(input) {
 
   let suffix = removeDigits(prefix, replaceDigitsByWords(input));
 
+
   return `${prefix}${suffix}`;
 }
