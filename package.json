@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "format": "prettier --check ./**/*.js",
-    "format:fix": "prettier --write",
+    "format:fix": "prettier --write ./**/*.js",
     "lint": "eslint ./**/*.js",
-    "lint:fix": "eslint --cache --fix",
+    "lint:fix": "eslint --cache --fix ./**/*.js",
     "test": "ava",
     "test:coverage": "c8 --reporter=lcovonly ava",
     "test:watch": "ava --watch"
