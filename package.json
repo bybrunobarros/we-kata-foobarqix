@@ -9,7 +9,7 @@
     "lint": "eslint ./**/*.js",
     "lint:fix": "eslint --cache --fix ./**/*.js",
     "test": "ava",
-    "test:coverage": "c8 --reporter=lcovonly --reporter=text ava",
+    "test:coverage": "c8 --reporter=lcov --reporter=text ava",
     "test:watch": "ava --watch"
   },
   "repository": {
