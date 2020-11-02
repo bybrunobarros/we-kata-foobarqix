@@ -17,16 +17,22 @@ test("should return Qix when value is only divisible by 7", macro, 49, "Qix");
 test("should return Foo when only contains one 3", macro, 13, "Foo");
 test("should return Qix when only contains one 7", macro, 17, "Qix");
 test(
+  "should return BarFoo when only contains one 5 and one 3",
+  macro,
+  53,
+  "BarFoo",
+);
+test(
   "should return BarBar when value is divisible by 5 and contains one 5",
   macro,
   5,
   "BarBar",
 );
 test(
-  "should return FooBarBar when value is divisible by 3 and 5 and 5 is found",
+  "should return FooQixBarQix when divisible by 3 and 7, and contains one 5 and one 7",
   macro,
-  15,
-  "FooBarBar",
+  567,
+  "FooQixBarQix",
 );
 test("should return 1*1 when contains one 0", (t) => {
   const computed = compute(101);
