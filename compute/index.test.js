@@ -5,28 +5,44 @@ function macro(t, input, expected) {
   const computed = compute(input);
   t.is(computed, expected);
 }
-macro.title = (providedTitle, input, expected) =>
-  `should return "${expected}" when input is ${input}`;
 
-[
-  { input: 1, expected: "1" },
-  { input: 2, expected: "2" },
-  { input: 3, expected: "FooFoo" },
-  { input: 4, expected: "4" },
-  { input: 5, expected: "BarBar" },
-  { input: 6, expected: "Foo" },
-  { input: 7, expected: "QixQix" },
-  { input: 8, expected: "8" },
-  { input: 9, expected: "Foo" },
-  { input: 10, expected: "Bar*" },
-  { input: 13, expected: "Foo" },
-  { input: 15, expected: "FooBarBar" },
-  { input: 21, expected: "FooQix" },
-  { input: 33, expected: "FooFooFoo" },
-  { input: 51, expected: "FooBar" },
-  { input: 53, expected: "BarFoo" },
-  { input: 101, expected: "1*1" },
-  { input: 105, expected: "FooBarQix*Bar" },
-  { input: 303, expected: "FooFoo*Foo" },
-  { input: 10101, expected: "FooQix**" },
-].forEach(({ input, expected }) => test(macro, input, expected));
+test(
+  "should return value when value is not divisible by 3, 5, or 7, and does not contain 3, 5, 7, or *",
+  macro,
+  1,
+  "1",
+);
+test("should return Foo when value is only divisible by 3", macro, 9, "Foo");
+test("should return Qix when value is only divisible by 7", macro, 49, "Qix");
+test("should return Foo when only contains one 3", macro, 13, "Foo");
+test("should return Qix when only contains one 7", macro, 17, "Qix");
+test(
+  "should return BarFoo when only contains one 5 and one 3",
+  macro,
+  53,
+  "BarFoo",
+);
+test(
+  "should return BarBar when value is divisible by 5 and contains one 5",
+  macro,
+  5,
+  "BarBar",
+);
+test(
+  "should return FooQixBarQix when divisible by 3 and 7, and contains one 5 and one 7",
+  macro,
+  567,
+  "FooQixBarQix",
+);
+test("should return 1*1 when contains one 0", (t) => {
+  const computed = compute(101);
+  t.is(computed, "1*1");
+});
+test("should return Bar* when value is only divisible by 5, and contains one 0", (t) => {
+  const computed = compute(10);
+  t.is(computed, "Bar*");
+});
+test("should return FooQix** when value is divisible by 3 then 7, and contains two 0", (t) => {
+  const computed = compute(10101);
+  t.is(computed, "FooQix**");
+});
